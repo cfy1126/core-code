@@ -29,6 +29,7 @@ function def(data,key,value,enumerable){
 class Observer{
     constructor(value){
         def(value,'__ob__',this,false);
+        this.walk(value);
     }
     walk(value){
         for(let key in value){
@@ -45,7 +46,7 @@ function observe(value){
     if(typeof value.__ob__ !== 'undefined'){
         ob = value.__ob__;
     }else{
-        ob = Observer(value);
+        ob = new Observer(value);
     }
 }
 
